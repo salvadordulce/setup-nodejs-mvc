@@ -3,7 +3,6 @@ body {
     align-items: center;
     flex-direction: column;
     display: flex;
-    background-color: rgb(13, 118, 179);
     margin-top: 30px;
 }
 
