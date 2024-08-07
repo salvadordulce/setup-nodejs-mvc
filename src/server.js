@@ -2,9 +2,11 @@ const express = require("express");
 const path = require("path");
 const enableHotReload = require("./hot-reload");
 const app = express();
+const bodyParser = require('body-parser');
+const tarefaController = require("./controllers/tarefaController");
 
-const exemploController = require("./controllers/exemplo");
-const produtoController = require("./controllers/produto");
+// Configuração do body-parser
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Configurações do seu app Express
 
@@ -23,8 +25,9 @@ enableHotReload(app);
 
 // Rotas
 
-app.post("/adicionar-produto" , produtoController.adicionarProduto);
-app.get("/produto" , produtoController.mostrarTela);
+app.get("/" , tarefaController.exibirTarefas);
+app.get("/adicionarTarefa" , tarefaController.adicionarNovaTarefa);
+app.post('/adicionar', tarefaController.exibirNovaTarefa)
 
 // Inicie o servidor
 const port = 3000;
