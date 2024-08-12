@@ -1,10 +1,15 @@
 const express = require("express");
 const path = require("path");
 const enableHotReload = require("./hot-reload");
+const bodyParser = require("body-parser")
 const app = express();
 
 const exemploController = require("./controllers/exemplo");
 const produtoController = require("./controllers/produto");
+
+// Configurando o body - parser
+app.use(bodyParser.urlencoded({extended: false}))
+
 
 // Configurações do seu app Express
 
@@ -22,7 +27,7 @@ console.log("Static files path set to:", path.join(__dirname, "public"));
 enableHotReload(app);
 
 // Rotas
-
+app.get("/" , exemploController.mostrarTelaDeExemplo)
 app.post("/adicionar-produto" , produtoController.adicionarProduto);
 app.get("/produto" , produtoController.mostrarTela);
 
