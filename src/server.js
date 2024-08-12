@@ -3,9 +3,11 @@ const path = require("path");
 const enableHotReload = require("./hot-reload");
 const bodyParser = require("body-parser")
 const app = express();
+const bodyParser = require('body-parser');
+const tarefaController = require("./controllers/tarefaController");
 
-const exemploController = require("./controllers/exemplo");
-const produtoController = require("./controllers/produto");
+// Configuração do body-parser
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Configurando o body - parser
 app.use(bodyParser.urlencoded({extended: false}))
@@ -27,9 +29,16 @@ console.log("Static files path set to:", path.join(__dirname, "public"));
 enableHotReload(app);
 
 // Rotas
+<<<<<<< HEAD
 app.get("/" , exemploController.mostrarTelaDeExemplo)
 app.post("/adicionar-produto" , produtoController.adicionarProduto);
 app.get("/produto" , produtoController.mostrarTela);
+=======
+
+app.get("/" , tarefaController.exibirTarefas);
+app.get("/adicionarTarefa" , tarefaController.adicionarNovaTarefa);
+app.post('/adicionar', tarefaController.exibirNovaTarefa)
+>>>>>>> e75d4ac4c57c402e0b9b7a7dfd40cddb1cc45bcf
 
 // Inicie o servidor
 const port = 3000;
